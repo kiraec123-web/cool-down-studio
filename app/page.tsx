@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { DemoBanner } from "@/components/demo-banner";
+import { Annotation } from "@/components/annotation";
 import { lessonList } from "@/lib/curriculum";
 
 const unitPositionColor: Record<string, string> = {
@@ -18,20 +19,75 @@ const steps = [
   {
     number: "01",
     title: "Select a lesson",
-    description:
-      "Choose the Illustrative Mathematics lesson you just taught. The system loads the exact learning goal, cool-down prompt, and IM teacher notes.",
+    description: null,
+    descriptionNode: (
+      <>
+        Choose the Illustrative Mathematics lesson you just taught. The system
+        loads the exact learning goal,{" "}
+        <Annotation
+          tooltip="A short 5–10 minute problem students work on independently at the end of a lesson. It gives you a quick read on who understood the day's goal — without grading a full assignment."
+          side="bottom"
+        >
+          cool-down prompt
+        </Annotation>
+        , and IM teacher notes.
+      </>
+    ),
   },
   {
     number: "02",
     title: "Name the pattern",
-    description:
-      "Pick the reasoning pattern you observed in student work — drawn from Eedi's validated misconception taxonomy, mapped to IM's 6.RP standards.",
+    description: null,
+    descriptionNode: (
+      <>
+        Pick the reasoning pattern you observed in student work — drawn from{" "}
+        <Annotation
+          tooltip="A research-backed catalog of common student reasoning errors, built by Eedi from analysis of millions of student responses. Each entry describes a specific wrong approach students take, not just a wrong answer."
+          side="bottom"
+        >
+          Eedi's misconception taxonomy
+        </Annotation>
+        , mapped to IM's 6.RP standards.
+      </>
+    ),
   },
   {
     number: "03",
     title: "Get your output package",
-    description:
-      "Receive a targeted re-assessment question, feedback language for returned papers, tomorrow's warm-up, and the next IM lesson connection — all grounded in the curriculum.",
+    description: null,
+    descriptionNode: (
+      <>
+        Receive a targeted{" "}
+        <Annotation
+          tooltip="A new problem that checks the same skill as yesterday's cool-down, designed so a student who corrected their thinking will get it right this time."
+          side="bottom"
+        >
+          re-assessment question
+        </Annotation>
+        ,{" "}
+        <Annotation
+          tooltip="A sentence starter for written comments on returned work — it names the specific reasoning error and points toward the right strategy, so feedback is concrete rather than just 'check your work.'"
+          side="bottom"
+        >
+          feedback stem
+        </Annotation>
+        ,{" "}
+        <Annotation
+          tooltip="A short activity at the start of the next class — either reviewing yesterday's gap, or previewing a connected new idea. Typically 5–10 minutes, whole-class or small-group."
+          side="bottom"
+        >
+          tomorrow's warm-up
+        </Annotation>
+        , and the{" "}
+        <Annotation
+          tooltip="The specific next lesson or unit in the Illustrative Mathematics curriculum that addresses this reasoning gap — so you know where the natural instructional next step lives."
+          side="bottom"
+        >
+          IM curriculum connection
+        </Annotation>{" "}
+        — all grounded in the curriculum.
+      </>
+    ),
   },
 ];
 
@@ -93,11 +149,21 @@ export default function Home() {
             <h1 className="text-3xl font-bold tracking-tight text-foreground">
               Close the daily instructional loop.
             </h1>
-            <p className="mt-2 max-w-2xl text-base text-muted-foreground leading-relaxed">
-              You collected the cool-downs. Now turn what you observed into
-              tomorrow's targeted warm-up — in under 2 minutes, grounded
-              entirely in Illustrative Mathematics and Eedi's misconception
-              taxonomy.
+            <p className="mt-2 max-w-2xl text-base text-foreground/70 leading-relaxed">
+              You collected the{" "}
+              <Annotation tooltip="Short independent problems students complete at the end of a lesson. They give you a per-student read on understanding before the next class — no grading required.">
+                cool-downs
+              </Annotation>
+              . Now turn what you observed into tomorrow's targeted{" "}
+              <Annotation tooltip="A 5–10 minute activity at the start of the next class, designed to address gaps from yesterday or bridge to new content.">
+                warm-up
+              </Annotation>{" "}
+              — in under 2 minutes, grounded entirely in Illustrative Mathematics
+              and{" "}
+              <Annotation tooltip="A research-backed catalog of specific student reasoning errors, built from millions of student responses. Used here to give your observation a precise name.">
+                Eedi's misconception taxonomy
+              </Annotation>
+              .
             </p>
 
             {/* How it works steps */}
@@ -113,8 +179,8 @@ export default function Home() {
                   <p className="mt-2 text-sm font-semibold text-foreground">
                     {step.title}
                   </p>
-                  <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                    {step.description}
+                  <p className="mt-1 text-sm text-foreground/70 leading-relaxed">
+                    {step.descriptionNode ?? step.description}
                   </p>
                 </div>
               ))}
