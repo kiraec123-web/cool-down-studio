@@ -6,122 +6,191 @@ import { DemoBanner } from "@/components/demo-banner";
 import { lessonList } from "@/lib/curriculum";
 
 const unitPositionColor: Record<string, string> = {
-  introducing: "bg-blue-500/10 text-blue-300 border-blue-500/20",
-  developing: "bg-violet-500/10 text-violet-300 border-violet-500/20",
-  consolidating: "bg-emerald-500/10 text-emerald-300 border-emerald-500/20",
+  introducing:
+    "bg-blue-50 text-blue-700 border-blue-200",
+  developing:
+    "bg-violet-50 text-violet-700 border-violet-200",
+  consolidating:
+    "bg-emerald-50 text-emerald-700 border-emerald-200",
 };
+
+const steps = [
+  {
+    number: "01",
+    title: "Select a lesson",
+    description:
+      "Choose the Illustrative Mathematics lesson you just taught. The system loads the exact learning goal, cool-down prompt, and IM teacher notes.",
+  },
+  {
+    number: "02",
+    title: "Name the pattern",
+    description:
+      "Pick the reasoning pattern you observed in student work — drawn from Eedi's validated misconception taxonomy, mapped to IM's 6.RP standards.",
+  },
+  {
+    number: "03",
+    title: "Get your output package",
+    description:
+      "Receive a targeted re-assessment question, feedback language for returned papers, tomorrow's warm-up, and the next IM lesson connection — all grounded in the curriculum.",
+  },
+];
 
 export default function Home() {
   const isDemo = !process.env.ANTHROPIC_API_KEY;
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-background">
       {isDemo && <DemoBanner />}
 
       {/* Header */}
-      <header className="border-b border-border px-6 py-5">
-        <div className="mx-auto max-w-4xl">
-          <div className="flex items-start justify-between">
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-muted-foreground">
-                  Imagine Learning
-                </span>
-                <span className="text-muted-foreground/40">·</span>
-                <span className="font-mono text-xs text-muted-foreground">
-                  Curriculum-Informed AI
-                </span>
+      <header className="border-b border-border bg-white px-6 py-4">
+        <div className="mx-auto max-w-4xl flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {/* IL wordmark dots */}
+            <div className="flex flex-col gap-0.5">
+              <div className="flex gap-0.5">
+                <div className="h-2 w-2 rounded-full bg-[--il-purple]" />
+                <div className="h-2 w-2 rounded-full bg-[--il-purple-light]" />
               </div>
-              <h1 className="mt-1 text-2xl font-semibold tracking-tight">
+              <div className="flex gap-0.5">
+                <div className="h-2 w-2 rounded-full bg-[--il-purple-light]" />
+                <div className="h-2 w-2 rounded-full bg-[--il-purple]" />
+              </div>
+            </div>
+            <div>
+              <p className="text-xs font-medium text-muted-foreground leading-none">
+                Imagine Learning
+              </p>
+              <p className="text-sm font-semibold text-foreground leading-tight">
                 Cool-Down Studio
-              </h1>
-              <p className="mt-0.5 text-sm text-muted-foreground">
-                Close the instructional loop. Turn today's cool-down into
-                tomorrow's targeted warm-up.
               </p>
             </div>
-            <Badge variant="outline" className="mt-1 font-mono text-xs">
+          </div>
+          <div className="flex items-center gap-2">
+            <Badge
+              variant="outline"
+              className="text-xs border-[--il-purple-border] text-[--il-purple] bg-[--il-purple-muted]"
+            >
+              Curriculum-Informed AI
+            </Badge>
+            <Badge variant="outline" className="text-xs text-muted-foreground">
               Mode 1 · Teacher Input
             </Badge>
           </div>
         </div>
       </header>
 
-      {/* Main */}
-      <main className="flex-1 px-6 py-8">
-        <div className="mx-auto max-w-4xl">
-          {/* Context strip */}
-          <div className="mb-6 flex items-center gap-3">
-            <div className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2">
-              <span className="text-xs text-muted-foreground">Grade</span>
-              <span className="text-sm font-medium">6</span>
-            </div>
-            <div className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2">
-              <span className="text-xs text-muted-foreground">Unit</span>
-              <span className="text-sm font-medium">
-                Unit 2: Introducing Ratios
+      <main className="flex-1">
+        {/* Hero / Intro */}
+        <div className="border-b border-border bg-gradient-to-b from-white to-[oklch(0.97_0.01_272)] px-6 py-10">
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-2 flex items-center gap-2">
+              <span className="inline-block h-1.5 w-6 rounded-full bg-[--il-purple]" />
+              <span className="text-xs font-semibold uppercase tracking-widest text-[--il-purple]">
+                Prototype · G6 Unit 2
               </span>
             </div>
-            <div className="ml-auto text-xs text-muted-foreground">
-              Select a lesson you just taught
+            <h1 className="text-3xl font-bold tracking-tight text-foreground">
+              Close the daily instructional loop.
+            </h1>
+            <p className="mt-2 max-w-2xl text-base text-muted-foreground leading-relaxed">
+              You collected the cool-downs. Now turn what you observed into
+              tomorrow's targeted warm-up — in under 2 minutes, grounded
+              entirely in Illustrative Mathematics and Eedi's misconception
+              taxonomy.
+            </p>
+
+            {/* How it works steps */}
+            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              {steps.map((step) => (
+                <div
+                  key={step.number}
+                  className="rounded-xl border border-[--il-purple-border] bg-white p-5"
+                >
+                  <span className="font-mono text-xs font-bold text-[--il-purple-light]">
+                    {step.number}
+                  </span>
+                  <p className="mt-2 text-sm font-semibold text-foreground">
+                    {step.title}
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Trust signals */}
+            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+              {[
+                "IM G6 Unit 2 curriculum",
+                "Eedi misconception taxonomy",
+                "IL PD Library",
+                "Teacher approval required",
+              ].map((signal) => (
+                <div key={signal} className="flex items-center gap-1.5">
+                  <div className="h-1.5 w-1.5 rounded-full bg-[--il-purple]" />
+                  <span className="text-xs text-muted-foreground">{signal}</span>
+                </div>
+              ))}
             </div>
           </div>
+        </div>
 
-          <Separator className="mb-6" />
+        {/* Lesson selector */}
+        <div className="px-6 py-8">
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-5 flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold text-foreground">
+                  Select the lesson you just taught
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Grade 6 · Unit 2: Introducing Ratios
+                </p>
+              </div>
+            </div>
 
-          {/* Lesson grid */}
-          <div className="grid gap-3">
-            {lessonList.map((lesson) => (
-              <Link key={lesson.lesson_id} href={`/lesson/${lesson.lesson_id}`}>
-                <Card className="group cursor-pointer border-border bg-card p-5 transition-colors hover:border-primary/40 hover:bg-card/80">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-background font-mono text-sm text-muted-foreground">
-                        {lesson.lesson_number}
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <p className="font-medium leading-tight">
+            <div className="grid gap-2.5">
+              {lessonList.map((lesson) => (
+                <Link
+                  key={lesson.lesson_id}
+                  href={`/lesson/${lesson.lesson_id}`}
+                >
+                  <Card className="group cursor-pointer border-border bg-white p-5 transition-all hover:border-[--il-purple-border] hover:shadow-sm">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[--il-purple-border] bg-[--il-purple-muted] font-mono text-sm font-semibold text-[--il-purple]">
+                          {lesson.lesson_number}
+                        </div>
+                        <div>
+                          <p className="font-semibold text-foreground leading-tight">
                             {lesson.title}
                           </p>
+                          <p className="mt-1 text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                            {lesson.learning_goal}
+                          </p>
                         </div>
-                        <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
-                          {lesson.learning_goal}
-                        </p>
+                      </div>
+                      <div className="flex shrink-0 flex-col items-end gap-1.5">
+                        <Badge
+                          variant="outline"
+                          className="font-mono text-xs text-muted-foreground"
+                        >
+                          {lesson.standard_id}
+                        </Badge>
+                        <Badge
+                          variant="outline"
+                          className={`text-xs capitalize ${unitPositionColor[lesson.unit_position]}`}
+                        >
+                          {lesson.unit_position}
+                        </Badge>
                       </div>
                     </div>
-                    <div className="flex shrink-0 flex-col items-end gap-2">
-                      <Badge
-                        variant="outline"
-                        className="font-mono text-xs text-muted-foreground"
-                      >
-                        {lesson.standard_id}
-                      </Badge>
-                      <Badge
-                        variant="outline"
-                        className={`text-xs capitalize ${unitPositionColor[lesson.unit_position]}`}
-                      >
-                        {lesson.unit_position}
-                      </Badge>
-                    </div>
-                  </div>
-                </Card>
-              </Link>
-            ))}
-          </div>
-
-          {/* Footer note */}
-          <div className="mt-8 rounded-lg border border-border bg-card/50 px-4 py-3">
-            <p className="text-xs text-muted-foreground">
-              <span className="font-medium text-foreground/60">
-                How Cool-Down Studio works:
-              </span>{" "}
-              Select the lesson you just taught → confirm the cool-down prompt →
-              choose the reasoning pattern you observed in student work → receive
-              a targeted re-assessment question, feedback language, and
-              tomorrow's warm-up. Grounded entirely in IM's curriculum and
-              Eedi's misconception taxonomy.
-            </p>
+                  </Card>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </main>

@@ -29,14 +29,14 @@ export default async function LessonPage({ params }: PageProps) {
       {isDemo && <DemoBanner />}
 
       {/* Header */}
-      <header className="border-b border-border px-6 py-5">
+      <header className="border-b border-border bg-white px-6 py-4">
         <div className="mx-auto max-w-5xl">
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="flex items-center gap-2">
                 <Link
                   href="/"
-                  className="font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+                  className="text-xs text-[--il-purple] transition-colors hover:text-[--il-purple-light]"
                 >
                   ← Cool-Down Studio
                 </Link>
@@ -45,14 +45,14 @@ export default async function LessonPage({ params }: PageProps) {
                   G6 · U2 · L{lesson.lesson_number}
                 </span>
               </div>
-              <h1 className="mt-1 text-xl font-semibold tracking-tight">
+              <h1 className="mt-1 text-xl font-bold tracking-tight text-foreground">
                 {lesson.title}
               </h1>
             </div>
             <div className="flex shrink-0 items-center gap-2 mt-1">
               <Badge
                 variant="outline"
-                className="font-mono text-xs text-muted-foreground"
+                className="font-mono text-xs border-[--il-purple-border] text-[--il-purple] bg-[--il-purple-muted]"
               >
                 {lesson.standard_id}
               </Badge>
