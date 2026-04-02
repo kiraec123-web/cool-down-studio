@@ -47,7 +47,13 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Imagine Learning brand */
+  /* Imagine Learning brand — Tailwind color utilities */
+  --color-il-purple: var(--il-purple);
+  --color-il-purple-light: var(--il-purple-light);
+}
+
+/* Imagine Learning runtime CSS custom properties (must be in :root, NOT @theme inline) */
+:root {
   --il-purple: oklch(0.38 0.20 272);
   --il-purple-light: oklch(0.52 0.22 272);
   --il-purple-muted: oklch(0.38 0.20 272 / 0.08);

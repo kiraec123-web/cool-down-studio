@@ -189,7 +189,7 @@ export function LessonStudio({ lesson, misconceptions }: LessonStudioProps) {
             <Button
               onClick={handleGenerate}
               disabled={!selected || isGenerating}
-              className="w-full bg-[--il-purple] hover:bg-[--il-purple-light] text-white transition-all disabled:opacity-50"
+              className="w-full transition-all"
               style={
                 selected && !isGenerating
                   ? { boxShadow: "var(--il-glow-md)" }
