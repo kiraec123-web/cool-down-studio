@@ -184,8 +184,8 @@ export default function Home() {
                 </div>
                 <Link
                   href="/lesson/G6_U2_L1"
-                  className="block w-full rounded-xl bg-[--il-purple] px-4 py-2.5 text-center text-sm font-semibold text-white transition-all hover:opacity-90"
-                  style={{ boxShadow: "var(--il-glow-sm)" }}
+                  className="block w-full rounded-xl px-4 py-2.5 text-center text-sm font-semibold text-white transition-all hover:opacity-90"
+                  style={{ background: "var(--il-purple)", boxShadow: "var(--il-glow-sm)" }}
                 >
                   Try Mode 1 →
                 </Link>
