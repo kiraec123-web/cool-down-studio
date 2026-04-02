@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Annotation } from "@/components/annotation";
 import type { LessonObject } from "@/lib/curriculum";
 import type { MisconceptionObject } from "@/lib/eedi";
 import type { OutputPackage } from "@/lib/mock-outputs";
@@ -38,24 +39,56 @@ function CopyButton({ text }: { text: string }) {
 const cardAccents = [
   {
     label: "Re-Assessment Question",
+    labelNode: (
+      <Annotation
+        tooltip="A new problem that checks the same skill as yesterday's cool-down. Students who corrected their thinking should get this right. Use it tomorrow or later in the week."
+        side="top"
+      >
+        Re-Assessment Question
+      </Annotation>
+    ),
     accentClass: "border-l-blue-500",
     labelClass: "text-blue-700",
     bgClass: "bg-blue-50/50",
   },
   {
     label: "Feedback Stem for Returned Papers",
+    labelNode: (
+      <Annotation
+        tooltip="A sentence starter to write on returned work. It names the exact reasoning error and points toward the correct approach — more useful than 'see me' or 'check your work.'"
+        side="top"
+      >
+        Feedback Stem for Returned Papers
+      </Annotation>
+    ),
     accentClass: "border-l-violet-500",
     labelClass: "text-violet-700",
     bgClass: "bg-violet-50/50",
   },
   {
     label: "Tomorrow's Warm-Up",
+    labelNode: (
+      <Annotation
+        tooltip="A 5–10 minute activity to open the next class. It either revisits yesterday's gap (for students who struggled) or bridges to new content (for students who got it). Designed for whole-class use."
+        side="top"
+      >
+        Tomorrow's Warm-Up
+      </Annotation>
+    ),
     accentClass: "border-l-emerald-500",
     labelClass: "text-emerald-700",
     bgClass: "bg-emerald-50/50",
   },
   {
     label: "IM Curriculum Connection",
+    labelNode: (
+      <Annotation
+        tooltip="Where this reasoning gap lives in the Illustrative Mathematics sequence — the specific upcoming lesson or unit that addresses it. Helps you know how much reteaching to do now vs. letting the curriculum handle it."
+        side="top"
+      >
+        IM Curriculum Connection
+      </Annotation>
+    ),
     accentClass: "border-l-amber-500",
     labelClass: "text-amber-700",
     bgClass: "bg-amber-50/50",
@@ -81,7 +114,7 @@ function OutputCard({ number, content, source, accent }: OutputCardProps) {
             {number}
           </span>
           <p className={`text-xs font-semibold uppercase tracking-wider ${accent.labelClass}`}>
-            {accent.label}
+            {accent.labelNode ?? accent.label}
           </p>
         </div>
         <CopyButton text={content} />

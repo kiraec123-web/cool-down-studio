@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { DemoBanner } from "@/components/demo-banner";
 import { InterviewerGuide } from "@/components/interviewer-guide";
+import { Annotation } from "@/components/annotation";
 import { lessonList } from "@/lib/curriculum";
 
 const unitPositionColor: Record<string, string> = {
@@ -93,8 +94,20 @@ export default function Home() {
             <h1 className="text-3xl font-bold tracking-tight text-foreground">
               Close the daily instructional loop.
             </h1>
-            <p className="mt-2 max-w-2xl text-base text-muted-foreground leading-relaxed">
-              Turn cool-down data into tomorrow's targeted warm-up — grounded entirely in Illustrative Mathematics and Eedi's misconception taxonomy. Two modes, one goal.
+            <p className="mt-2 max-w-2xl text-base text-foreground/70 leading-relaxed">
+              Turn{" "}
+              <Annotation tooltip="Short independent problems students complete at the end of a lesson. They give you a per-student read on understanding before the next class — no grading required.">
+                cool-down
+              </Annotation>{" "}
+              data into tomorrow's targeted{" "}
+              <Annotation tooltip="A 5–10 minute activity at the start of the next class, designed to address gaps from yesterday or bridge to new content.">
+                warm-up
+              </Annotation>{" "}
+              — grounded entirely in Illustrative Mathematics and{" "}
+              <Annotation tooltip="A research-backed catalog of specific student reasoning errors, built from millions of student responses. Used here to give your observation a precise name.">
+                Eedi's misconception taxonomy
+              </Annotation>
+              . Two modes, one goal.
             </p>
           </div>
         </div>
@@ -123,12 +136,47 @@ export default function Home() {
                     Live
                   </Badge>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  You observed a reasoning pattern in student work. Select it from the Eedi taxonomy and receive a 4-part output package — re-assessment question, feedback stem, warm-up, and IM curriculum connection.
+                <p className="text-sm text-foreground/70 leading-relaxed">
+                  You observed a reasoning pattern in student work. Select it from the{" "}
+                  <Annotation
+                    tooltip="A research-backed catalog of common student reasoning errors, built by Eedi from analysis of millions of student responses. Each entry describes a specific wrong approach students take, not just a wrong answer."
+                    side="bottom"
+                  >
+                    Eedi taxonomy
+                  </Annotation>{" "}
+                  and receive a 4-part output package —{" "}
+                  <Annotation
+                    tooltip="A new problem that checks the same skill as yesterday's cool-down. Students who corrected their thinking should get this right."
+                    side="bottom"
+                  >
+                    re-assessment question
+                  </Annotation>
+                  ,{" "}
+                  <Annotation
+                    tooltip="A sentence starter to write on returned work. Names the exact reasoning error and points toward the correct approach."
+                    side="bottom"
+                  >
+                    feedback stem
+                  </Annotation>
+                  ,{" "}
+                  <Annotation
+                    tooltip="A 5–10 minute activity to open the next class — reviews yesterday's gap or bridges to new content. Whole-class."
+                    side="bottom"
+                  >
+                    warm-up
+                  </Annotation>
+                  , and{" "}
+                  <Annotation
+                    tooltip="The specific next lesson or unit in Illustrative Mathematics that addresses this reasoning gap."
+                    side="bottom"
+                  >
+                    IM curriculum connection
+                  </Annotation>
+                  .
                 </p>
                 <div className="space-y-1.5">
                   {["Select lesson → pick misconception → get output", "Works from paper-based or informal observation", "Output ready in under 2 minutes"].map((f) => (
-                    <div key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
+                    <div key={f} className="flex items-start gap-2 text-xs text-foreground/65">
                       <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[--il-purple-light]" />
                       <span>{f}</span>
                     </div>
@@ -158,12 +206,12 @@ export default function Home() {
                     In development
                   </Badge>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-foreground/70 leading-relaxed">
                   Students submit typed responses digitally. AI reads every response overnight, clusters students by misconception, and prepares differentiated warm-ups for teacher approval before anything reaches students.
                 </p>
                 <div className="space-y-1.5">
                   {["AI clusters all 25 student responses automatically", "Confidence scores flag ambiguous cases for review", "Teacher approves per-cluster warm-ups before pushing"].map((f) => (
-                    <div key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
+                    <div key={f} className="flex items-start gap-2 text-xs text-foreground/65">
                       <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400" />
                       <span>{f}</span>
                     </div>

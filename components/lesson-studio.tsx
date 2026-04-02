@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Annotation } from "@/components/annotation";
 import { OutputPanel } from "@/components/output-panel";
 import type { LessonObject } from "@/lib/curriculum";
 import type { MisconceptionObject } from "@/lib/eedi";
@@ -136,9 +137,16 @@ export function LessonStudio({ lesson, misconceptions }: LessonStudioProps) {
               <p className="text-sm font-semibold text-foreground mb-1">
                 What did you observe in student work?
               </p>
-              <p className="text-xs text-muted-foreground mb-4">
-                Select the reasoning pattern that best describes what students
-                who didn't demonstrate understanding were doing.
+              <p className="text-sm text-foreground/65 mb-4 leading-relaxed">
+                Select the{" "}
+                <Annotation
+                  tooltip="A specific, named error pattern from Eedi's taxonomy — not just 'wrong answer' but the particular reasoning the student used. Naming the pattern precisely helps generate targeted feedback and warm-ups."
+                  side="bottom"
+                >
+                  reasoning pattern
+                </Annotation>{" "}
+                that best describes what students who didn't demonstrate
+                understanding were doing.
               </p>
               <div className="space-y-2">
                 {misconceptions.map((m) => {
